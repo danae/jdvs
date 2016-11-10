@@ -1,54 +1,51 @@
 package ctjava.station;
 
-import ctjava.Train;
-import java.util.LinkedList;
+import ctjava.train.Train;
+import java.util.Collections;
 import java.util.List;
 
-public class Station
+public interface Station
 {
-  // Variables
-  private String code;
-  private String name;
-  private List<String> synonyms = new LinkedList<>();
-  private List<Train> trains = new LinkedList<>();
-  
-  // Management
-  public String getCode()
+  // Fake station class
+  public class Fake implements Station
   {
-    return this.code;
-  }
-  public Station withCode(String code)
-  {
-    this.code = code;
-    return this;
-  }
-  public String getName()
-  {
-    return this.name;
-  }
-  public Station withName(String name)
-  {
-    this.name = name;
-    return this;
-  }
-  public List<String> getSynonyms()
-  {
-    return this.synonyms;
-  }
-  public Station withSynonyms(List<String> synonyms)
-  {
-    this.synonyms = synonyms;
-    return this;
-  }
-  public List<Train> getTrains()
-  {
-    return this.trains;
-  }
-  public Station withTrains(List<Train> trains)
-  {
-    this.trains = trains;
-    return this;
+    // Variables
+    private final String name;
+    
+    // Constructor
+    public Fake(String name)
+    {
+      this.name = name;
+    }
+    
+    // Management
+    @Override public String getCode()
+    {
+      return null;
+    }
+    @Override public String getName()
+    {
+      return this.name;
+    }
+    @Override public List<String> getSynonyms()
+    {
+      return Collections.emptyList();
+    }
+    @Override public List<Train> getTrains()
+    {
+      return Collections.emptyList();
+    }
   }
   
-  // Load a station
+  // Return the code of the station
+  public String getCode();
+  
+  // Return the name of the station
+  public String getName();
+  
+  // Return the synonyms of the station
+  public List<String> getSynonyms();
+  
+  // Return the trains departing at the station
+  public List<Train> getTrains();
 }

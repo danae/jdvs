@@ -1,12 +1,13 @@
-package ctjava;
+package ctjava.train;
 
 import ctjava.station.Station;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Train
+public final class Train
 {
   // Variables
   private String number;
@@ -18,7 +19,7 @@ public class Train
   private Duration delay;
   private String platform;
   private List<String> info = new LinkedList<>();
-  private List<String> infoOptional = new LinkedList<>();
+  private List<String> tips = new LinkedList<>();
   
   // Management
   public String getNumber()
@@ -102,13 +103,19 @@ public class Train
     this.info = info;
     return this;
   }
-  public List<String> getInfoOptional()
+  public List<String> getTips()
   {
-    return this.infoOptional;
+    return this.tips;
   }
-  public Train withInfoOptional(List<String> infoOptional)
+  public Train withTips(List<String> tips)
   {
-    this.infoOptional = infoOptional;
+    this.tips = tips;
     return this;
+  }
+  
+  // To String
+  @Override public String toString()
+  {
+    return new SimpleDateFormat("HH:mm").format(this.getTime()) + " " + this.getType() + " " + this.getDestination().getName() + (!this.getDelay().isZero() ? " +" + this.getDelay().toMinutes() : "");
   }
 }

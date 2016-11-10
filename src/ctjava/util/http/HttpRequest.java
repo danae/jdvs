@@ -1,7 +1,10 @@
 package ctjava.util.http;
 
+import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonValue;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -12,9 +15,6 @@ import java.util.Map;
 
 public class HttpRequest
 {
-  // Static variables
-  public static final int MAX_TIMEOUTS = 3;
-  
   // Variables
   private final String url;
   private final Map<String,String> parameters;
@@ -75,32 +75,37 @@ public class HttpRequest
   // Request
   public InputStream request() throws HttpException
   {
-    return this.request(0);
-  }
-  public InputStream request(int timeouts) throws HttpException
-  {
     try
     {
       URL url = this.toUrl();
-      System.out.println("  Requesting " + url.toString() + " (" + timeouts + " timeouts)");
+      System.out.println("Requesting " + url.toString());
       
       HttpURLConnection request = (HttpURLConnection)url.openConnection();
       request.setRequestMethod("GET");
 
-      int status = request.getResponseCode();
-      if (status != 200)
-      {
-        if (++timeouts < MAX_TIMEOUTS)
-          return this.request(timeouts);
-        else
-          throw new HttpException("Unsuccesful request with status " + status + " (" + url.toString() + ")");
-      }
-
-      return request.getInputStream();
+      if (request.getResponseCode() != 200)
+        throw new HttpException("Unsuccesful request with status " + request.getResponseCode() + " (" + url.toString() + ")");
+      else
+        return request.getInputStream();
     }
     catch (IOException ex)
     {
-      throw new HttpException("I/O error: " + ex.getMessage(),ex);
+      throw new HttpException(ex.getMessage(),ex);
+    }
+  }
+  
+  // JSON Request
+  public JsonValue jsonRequest() throws HttpException
+  {
+    try
+    {
+      InputStream in = this.request();
+      InputStreamReader reader = new InputStreamReader(in);
+      return Json.parse(reader);
+    }
+    catch (IOException ex)
+    {
+      throw new HttpException(ex.getMessage(),ex);
     }
   }
   
