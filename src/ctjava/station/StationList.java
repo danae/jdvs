@@ -1,5 +1,6 @@
 package ctjava.station;
 
+import ctjava.train.TrainListException;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
@@ -15,10 +16,10 @@ public final class StationList
 {
   // Variables
   private final Map<String,List<String>> names = new LinkedHashMap<>();
-  private final Map<String,RealStation> queries = new LinkedHashMap<>();
+  private final Map<String,Station> queries = new LinkedHashMap<>();
   
   // Constructor
-  public StationList() throws StationException
+  public StationList() throws StationListException
   {
     try
     {
@@ -48,13 +49,14 @@ public final class StationList
         // Add names and synonyms
         this.names.get(code).add(name);
       }
-      
-      // Debug message
-      System.out.println(this.names.size() + " stations loaded");
     }
-    catch (HttpException | UnsupportedOperationException | NullPointerException ex)
+    catch (HttpException ex)
     {
-      throw new StationException("Could not load stations: " + ex.getMessage(),ex);
+      throw new StationListException("Could not load stations because the API request failed",ex);
+    }
+    catch (UnsupportedOperationException | NullPointerException ex)
+    {
+      throw new StationListException("Could not load stations because the API response was invalid or incomplete ",ex);
     }
   }
   
@@ -70,7 +72,8 @@ public final class StationList
     {
       if (nameEntry.getValue().contains(query))
       {
-        RealStation station = new RealStation(nameEntry.getKey())
+        Station station = new Station()
+          .withCode(nameEntry.getKey())
           .withName(ListUtils.first(nameEntry.getValue()))
           .withSynonyms(ListUtils.rest(nameEntry.getValue()));
         this.queries.put(query,station);
@@ -83,7 +86,8 @@ public final class StationList
     {
       if (code.equals(query))
       {
-        RealStation station = new RealStation(code)
+        Station station = new Station()
+          .withCode(code)
           .withName(ListUtils.first(this.names.get(code)))
           .withSynonyms(ListUtils.rest(this.names.get(code)));
         this.queries.put(query,station);
@@ -100,6 +104,6 @@ public final class StationList
   public Station findOrFake(String query)
   {
     Station station = this.find(query);
-    return station == null ? new Station.Fake(query) : station;
+    return station == null ? new Station().withName(query) : station;
   }
 }

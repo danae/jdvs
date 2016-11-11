@@ -1,17 +1,15 @@
 package ctjava.train;
 
 import com.eclipsesource.json.JsonArray;
-import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
-import ctjava.station.StationException;
 import ctjava.util.http.HttpException;
 import ctjava.util.http.HttpRequest;
 import ctjava.util.json.JsonException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 public final class TrainList implements Iterable<Train>
 {
@@ -19,7 +17,7 @@ public final class TrainList implements Iterable<Train>
   private final List<Train> trains = new LinkedList<>();
   
   // Constructor
-  public TrainList(String code) throws StationException
+  public TrainList(String code) throws TrainListException
   {
     try
     {
@@ -33,11 +31,15 @@ public final class TrainList implements Iterable<Train>
       
       // Add each train to the list
       for (JsonValue jsonTrain : jsonTrains)
-        this.trains.add(new TrainDeserializer().deserialize(jsonTrain));
+        this.trains.add(new Train.Deserializer().deserialize(jsonTrain));
     }
-    catch (HttpException | JsonException ex)
+    catch (HttpException ex)
     {
-      throw new StationException("Could not load trains: " + ex.getMessage(),ex);
+      throw new TrainListException("Could not load trains because the API request failed ",ex);
+    }
+    catch (JsonException ex)
+    {
+      throw new TrainListException("Could not load trains because the API response was invalid or incomplete",ex);
     }
   }
   

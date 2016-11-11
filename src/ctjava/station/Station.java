@@ -1,51 +1,49 @@
 package ctjava.station;
 
+import ctjava.train.TrainListException;
 import ctjava.train.Train;
+import ctjava.train.TrainList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
-public interface Station
+public final class Station
 {
-  // Fake station class
-  public class Fake implements Station
+  // Variables
+  private String code;
+  private String name;
+  private List<String> synonyms = new LinkedList<>();
+  
+  // Management
+  public String getCode()
   {
-    // Variables
-    private final String name;
-    
-    // Constructor
-    public Fake(String name)
-    {
-      this.name = name;
-    }
-    
-    // Management
-    @Override public String getCode()
-    {
-      return null;
-    }
-    @Override public String getName()
-    {
-      return this.name;
-    }
-    @Override public List<String> getSynonyms()
-    {
-      return Collections.emptyList();
-    }
-    @Override public List<Train> getTrains()
-    {
-      return Collections.emptyList();
-    }
+    return this.code;
   }
-  
-  // Return the code of the station
-  public String getCode();
-  
-  // Return the name of the station
-  public String getName();
-  
-  // Return the synonyms of the station
-  public List<String> getSynonyms();
-  
-  // Return the trains departing at the station
-  public List<Train> getTrains();
+  public Station withCode(String code)
+  {
+    this.code = code;
+    return this;
+  }
+  public String getName()
+  {
+    return this.name;
+  }
+  public Station withName(String name)
+  {
+    this.name = name;
+    return this;
+  }
+  public List<String> getSynonyms()
+  {
+    return this.synonyms;
+  }
+  public Station withSynonyms(List<String> synonyms)
+  {
+    this.synonyms = synonyms;
+    return this;
+  }
+  public List<Train> getTrains() throws TrainListException
+  {
+    return this.code == null ? Collections.emptyList() : new TrainList(this.code).getList();
+  }
 }
