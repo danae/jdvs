@@ -1,4 +1,4 @@
-# Ctanvas
+# Ctjava
 
 [![GitHub release](https://img.shields.io/github/release/dengsn/Ctjava.svg)](https://github.com/dengsn/Ctjava/releases) [![Github Releases](https://img.shields.io/github/downloads/dengsn/Ctjava/latest/total.svg)](https://github.com/dengsn/Ctjava/releases)
 
@@ -19,6 +19,14 @@ The Ctjava library exists of several classes to minimize the effort of fetching 
 - `Train` to store information of a departing train, such as time, platform and route.
 
 In the `examples` folder you can find a basic example on how to use the library.
+
+### Usage in Max/MSP
+
+To use Ctjava in Max/MSP, you have to place the `Ctjava.jar` and the `minimal-json.jar` files in the `Ctjava/java-classes/lib` folder in your Max/MSP packages folder. Afterwards you can use the `mxj ctjava.max.MaxStation` Max object to retrieve a list of strings that resemble the departing trains at a station. The Max object has the following inlets and outlets:
+
+ - **Inlet 1**: Message containing the station name to get the departing trains, bang to refresh the departing trains. You can use `loadmess` here to initialize a station at load time.
+ - **Outlet 1**: List of trains departing as strings.
+ - **Outlet 2**: Number of trains departing.
 
 ## Documentation
 
