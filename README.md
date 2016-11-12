@@ -2,7 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/release/dengsn/Ctjava.svg)](https://github.com/dengsn/Ctjava/releases) [![Github Releases](https://img.shields.io/github/downloads/dengsn/Ctjava/latest/total.svg)](https://github.com/dengsn/Ctjava/releases)
 
-**Ctjava** is a Java library to fetch Dutch train stations and their departing trains using the [Rijden De Treinen API](https://github.com/geertw/rdt-infoplus-dvs).
+**Ctjava** is a simple Java and Max/MSP library to fetch Dutch train stations and their departing trains using the [Rijden De Treinen API](https://github.com/geertw/rdt-infoplus-dvs).
 
 ## Download and installation
 
