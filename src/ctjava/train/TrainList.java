@@ -5,8 +5,6 @@ import com.eclipsesource.json.JsonValue;
 import ctjava.util.http.HttpException;
 import ctjava.util.http.HttpRequest;
 import ctjava.util.json.JsonException;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,7 +29,7 @@ public final class TrainList implements Iterable<Train>
       
       // Add each train to the list
       for (JsonValue jsonTrain : jsonTrains)
-        this.trains.add(new Train.Deserializer().deserialize(jsonTrain));
+        this.trains.add(new TrainDeserializer().deserialize(jsonTrain));
     }
     catch (HttpException ex)
     {

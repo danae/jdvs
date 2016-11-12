@@ -6,11 +6,8 @@ import com.cycling74.max.MaxObject;
 import ctjava.station.Station;
 import ctjava.station.StationList;
 import ctjava.station.StationListException;
-import ctjava.train.Train;
 import ctjava.train.TrainListException;
-import java.time.format.DateTimeFormatter;
-import java.util.LinkedList;
-import java.util.List;
+import ctjava.train.TrainSerializer;
 
 public class MaxStation extends MaxObject
 {
@@ -27,7 +24,7 @@ public class MaxStation extends MaxObject
       this.declareInlets(new int[]{DataTypes.MESSAGE});
       this.setInletAssist(new String[]{"Message containing the station name to get the departing trains, bang to refresh the departing trains"});
       this.declareOutlets(new int[]{DataTypes.LIST,DataTypes.INT});
-      this.setOutletAssist(new String[]{"List of trains departing as strings","Number of trains departing"});
+      this.setOutletAssist(new String[]{"List of trains departing as JSON strings (to use in dict.deserialize)","Number of trains departing"});
       this.createInfoOutlet(false);
       
       // Load station list
@@ -55,39 +52,18 @@ public class MaxStation extends MaxObject
     
     try
     {
-      // Return a new list of trains of the current station
-      List<String> result = new LinkedList<>();
-      List<Train> trains = this.station.getTrains();
-      trains.stream()
-        .map(this::format)
-        .forEach(result::add);
+      // Create an array of the departing trains
+      String[] trains = this.station.getTrains().stream()
+        .map(train -> new TrainSerializer().serialize(train).toString())
+        .toArray(String[]::new);
       
       // Output
-      this.outlet(0,result.toArray(new String[0]));
-      this.outlet(1,trains.size());
+      this.outlet(0,trains);
+      this.outlet(1,trains.length);
     }
     catch (TrainListException ex)
     {
       MaxObject.getErrorStream().println(ex.getMessage());
     }
-  }
-  
-  // Format a train to return
-  protected String format(Train train)
-  {
-    StringBuilder sb = new StringBuilder();
-      
-    // Append train info
-    sb.append(train.getTime().format(DateTimeFormatter.ofPattern("HH:mm")));
-    sb.append(" ").append(train.getOperator());
-    sb.append(" ").append(train.getType());
-    sb.append(" ").append(train.getNumber());
-      
-    // Append route
-    for (ctjava.station.Station route : train.getRoute())
-      sb.append(" \"").append(route.getName()).append("\"");
-    sb.append(" \"").append(train.getDestination().getName()).append("\"");
-    
-    return sb.toString();
   }
 }

@@ -1,6 +1,5 @@
 package ctjava.station;
 
-import ctjava.train.TrainListException;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
@@ -14,6 +13,15 @@ import java.util.Map;
 
 public final class StationList
 {
+  // Static instance
+  private static StationList instance;
+  
+  // Get static instance
+  public static StationList getInstance()
+  {
+    return StationList.instance;
+  }
+  
   // Variables
   private final Map<String,List<String>> names = new LinkedHashMap<>();
   private final Map<String,Station> queries = new LinkedHashMap<>();
@@ -48,6 +56,9 @@ public final class StationList
 
         // Add names and synonyms
         this.names.get(code).add(name);
+        
+        // Set the static instance
+        StationList.instance = this;
       }
     }
     catch (HttpException ex)

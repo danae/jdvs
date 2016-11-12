@@ -77,9 +77,7 @@ public class HttpRequest
   {
     try
     {
-      URL url = this.toUrl();
-      System.out.println("Requesting " + url.toString());
-      
+      URL url = this.toUrl();      
       HttpURLConnection request = (HttpURLConnection)url.openConnection();
       request.setRequestMethod("GET");
 
