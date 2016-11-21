@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public final class StationList
 {
@@ -116,5 +117,12 @@ public final class StationList
   {
     Station station = this.find(query);
     return station == null ? new Station().withName(query) : station;
+  }
+  
+  // Returns a random station in the Netherlands
+  public Station random()
+  {
+    List<String> codes = new LinkedList<>(this.names.keySet());
+    return this.find(codes.get(new Random().nextInt(codes.size())));
   }
 }
