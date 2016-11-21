@@ -23,8 +23,8 @@ public class MaxStation extends MaxObject
       // Initialize Max object
       this.declareInlets(new int[]{DataTypes.MESSAGE});
       this.setInletAssist(new String[]{"Message containing the station name to get the departing trains, bang to refresh the departing trains"});
-      this.declareOutlets(new int[]{DataTypes.LIST,DataTypes.INT});
-      this.setOutletAssist(new String[]{"List of trains departing as JSON strings (to use in dict.deserialize)","Number of trains departing"});
+      this.declareOutlets(new int[]{DataTypes.LIST});
+      this.setOutletAssist(new String[]{"List of trains departing as JSON strings (to use in dict.deserialize)"});
       this.createInfoOutlet(false);
       
       // Load station list
@@ -59,7 +59,6 @@ public class MaxStation extends MaxObject
       
       // Output
       this.outlet(0,trains);
-      this.outlet(1,trains.length);
     }
     catch (TrainListException ex)
     {
