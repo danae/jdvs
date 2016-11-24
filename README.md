@@ -2,7 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/release/dengsn/Jdvs.svg)](https://github.com/dengsn/Ctjava/releases) [![Github Releases](https://img.shields.io/github/downloads/dengsn/Jdvs/latest/total.svg)](https://github.com/dengsn/Ctjava/releases)
 
-**Jdvs* is a simple Java library to fetch Dutch train stations and their departing trains using the [Rijden De Treinen API](https://github.com/geertw/rdt-infoplus-dvs).
+**Jdvs** is a simple Java library to fetch Dutch train stations and their departing trains using the [Rijden De Treinen API](https://github.com/geertw/rdt-infoplus-dvs).
 
 ## Download and installation
 
@@ -20,9 +20,9 @@ The Jdvs library exists of several classes to minimize the effort of fetching st
 
 In the `examples` folder you can find a basic example on how to use the library.
 
-### Usage in Max/MSP
 
-To use Ctjava in Max/MSP, see the [wiki](https://github.com/dengsn/Ctjava/wiki/Ctjava-in-Max) for more information and installation instructions.
+
+
 
 ## Documentation
 
