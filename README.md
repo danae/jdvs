@@ -1,8 +1,8 @@
 # Jdvs
 
-[![GitHub release](https://img.shields.io/github/release/dengsn/Jdvs.svg)](https://github.com/dengsn/Ctjava/releases) [![Github Releases](https://img.shields.io/github/downloads/dengsn/Jdvs/latest/total.svg)](https://github.com/dengsn/Ctjava/releases)
+[![GitHub release](https://img.shields.io/github/release/dengsn/Jdvs.svg)](https://github.com/dengsn/Jdvs/releases) [![Github Releases](https://img.shields.io/github/downloads/dengsn/Jdvs/latest/total.svg)](https://github.com/dengsn/Jdvs/releases)
 
-**Jdvs** is a simple Java library to retrieve Dutch train stations and their departing trains using the [Rijden De Treinen API](https://github.com/geertw/rdt-infoplus-dvs). This API uses the InfoPlus DVS system created by NS, the Ducth Railways.
+**Jdvs** is a simple Java library to retrieve Dutch train stations and their departing trains using the [Rijden De Treinen API](https://github.com/geertw/rdt-infoplus-dvs). This API uses the InfoPlus DVS system created by NS, the Dutch Railways.
 
 ## Download and installation
 
