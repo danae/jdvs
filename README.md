@@ -1,18 +1,18 @@
-# Ctjava
+# Jdvs
 
-[![GitHub release](https://img.shields.io/github/release/dengsn/Ctjava.svg)](https://github.com/dengsn/Ctjava/releases) [![Github Releases](https://img.shields.io/github/downloads/dengsn/Ctjava/latest/total.svg)](https://github.com/dengsn/Ctjava/releases)
+[![GitHub release](https://img.shields.io/github/release/dengsn/Jdvs.svg)](https://github.com/dengsn/Ctjava/releases) [![Github Releases](https://img.shields.io/github/downloads/dengsn/Jdvs/latest/total.svg)](https://github.com/dengsn/Ctjava/releases)
 
-**Ctjava** is a simple Java and Max/MSP library to fetch Dutch train stations and their departing trains using the [Rijden De Treinen API](https://github.com/geertw/rdt-infoplus-dvs).
+**Jdvs* is a simple Java library to fetch Dutch train stations and their departing trains using the [Rijden De Treinen API](https://github.com/geertw/rdt-infoplus-dvs).
 
 ## Download and installation
 
-The latest release of Ctjava is available under the [releases](https://github.com/dengsn/Ctjava/releases) tab in the [GitHub repository](https://github.com/dengsn/Ctjava). Ctjava depends on the following external libraries, make sure you download and include them in your project as well:
+The latest release of Jdvs is available under the [releases](https://github.com/dengsn/Jdvs/releases) tab in the [GitHub repository](https://github.com/dengsn/Jdvs). Jdvs depends on the following external libraries, make sure you download and include them in your project as well:
 
 - [minimal-json](https://github.com/ralfstx/minimal-json) >= `0.9.4`
 
 ## Usage
 
-The Ctjava library exists of several classes to minimize the effort of fetching stations and trains. These are:
+The Jdvs library exists of several classes to minimize the effort of fetching stations and trains. These are:
 
 - `StationList` to store all station names as well as to find stations using this information.
 - `Station` for storing the code and names of a station and the departing trains.
