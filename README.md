@@ -2,12 +2,13 @@
 
 [![GitHub release](https://img.shields.io/github/release/dengsn/Jdvs.svg)](https://github.com/dengsn/Ctjava/releases) [![Github Releases](https://img.shields.io/github/downloads/dengsn/Jdvs/latest/total.svg)](https://github.com/dengsn/Ctjava/releases)
 
-**Jdvs** is a simple Java library to fetch Dutch train stations and their departing trains using the [Rijden De Treinen API](https://github.com/geertw/rdt-infoplus-dvs).
+**Jdvs** is a simple Java library to retrieve Dutch train stations and their departing trains using the [Rijden De Treinen API](https://github.com/geertw/rdt-infoplus-dvs). This API uses the InfoPlus DVS system created by NS, the Ducth Railways.
 
 ## Download and installation
 
 The latest release of Jdvs is available under the [releases](https://github.com/dengsn/Jdvs/releases) tab in the [GitHub repository](https://github.com/dengsn/Jdvs). Jdvs depends on the following external libraries, make sure you download and include them in your project as well:
 
+- Java >= 1.8
 - [minimal-json](https://github.com/ralfstx/minimal-json) >= `0.9.4`
 
 ## Usage
@@ -19,10 +20,6 @@ The Jdvs library exists of several classes to minimize the effort of fetching st
 - `Train` to store information of a departing train, such as time, platform and route.
 
 In the `examples` folder you can find a basic example on how to use the library.
-
-
-
-
 
 ## Documentation
 
@@ -67,7 +64,7 @@ The `Train` class contains information about a departing train, such as time, pl
 
  - `public String getNumber()` returns the internal train number.
  - `public String getType()` returns the type of the train, like Intercity or Sprinter.
- - `public String getOperator` returns the operator of this line, like NS or Arriva.
+ - `public String getOperator()` returns the operator of this line, like NS or Arriva.
  - `public Station getDestination()` returns the destination station.
  - `public List<Station> getRoute()` returns the via-stations of this line.
  - `public ZonedDateTime getTime()` returns the departure time.
@@ -81,7 +78,7 @@ To create a new train, use the `public Train()` constructor.
 
 ## Exceptions
 
-The functions described above throw exceptions if something goes wrong. A message and cause is always provided. THe following exceptions can be thrown:
+The functions described above throw exceptions if something goes wrong. A message and cause is always provided. The following exceptions can be thrown:
 
  - `StationListException` if the `StationList` class constructor fails to create a new object.
  - `TrainListException` if the `Station.getTrains()` function fails to fetch the departing trains.

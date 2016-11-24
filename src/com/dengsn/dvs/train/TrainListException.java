@@ -1,4 +1,4 @@
-package ctjava.train;
+package com.dengsn.dvs.train;
 
 public final class TrainListException extends Exception
 {

@@ -1,6 +1,6 @@
-package ctjava.train;
+package com.dengsn.dvs.train;
 
-import ctjava.station.Station;
+import com.dengsn.dvs.station.Station;
 import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;

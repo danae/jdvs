@@ -1,4 +1,4 @@
-package ctjava.station;
+package com.dengsn.dvs.station;
 
 public final class StationListException extends Exception
 {

@@ -1,4 +1,4 @@
-package ctjava.util;
+package com.dengsn.dvs.util;
 
 import java.util.Collections;
 import java.util.LinkedList;

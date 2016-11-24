@@ -1,4 +1,4 @@
-package ctjava.util.json;
+package com.dengsn.dvs.util.json;
 
 import com.eclipsesource.json.JsonValue;
 

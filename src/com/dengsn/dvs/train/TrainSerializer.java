@@ -1,11 +1,11 @@
-package ctjava.train;
+package com.dengsn.dvs.train;
 
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonValue;
-import ctjava.station.Station;
-import ctjava.util.json.JsonException;
-import ctjava.util.json.JsonSerializer;
+import com.dengsn.dvs.station.Station;
+import com.dengsn.dvs.util.json.JsonException;
+import com.dengsn.dvs.util.json.JsonSerializer;
 import java.time.format.DateTimeFormatter;
 
 public class TrainSerializer implements JsonSerializer<Train>

@@ -1,10 +1,10 @@
-package ctjava.train;
+package com.dengsn.dvs.train;
 
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
-import ctjava.station.StationList;
-import ctjava.util.json.JsonDeserializer;
-import ctjava.util.json.JsonException;
+import com.dengsn.dvs.station.StationList;
+import com.dengsn.dvs.util.json.JsonDeserializer;
+import com.dengsn.dvs.util.json.JsonException;
 import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;

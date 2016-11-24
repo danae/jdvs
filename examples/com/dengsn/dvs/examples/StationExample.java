@@ -1,10 +1,10 @@
-package ctjava.examples;
+package com.dengsn.dvs.examples;
 
-import ctjava.station.Station;
-import ctjava.station.StationList;
-import ctjava.station.StationListException;
-import ctjava.train.Train;
-import ctjava.train.TrainListException;
+import com.dengsn.dvs.station.Station;
+import com.dengsn.dvs.station.StationList;
+import com.dengsn.dvs.station.StationListException;
+import com.dengsn.dvs.train.Train;
+import com.dengsn.dvs.train.TrainListException;
 
 public class StationExample
 {

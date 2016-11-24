@@ -1,8 +1,8 @@
-package ctjava.station;
+package com.dengsn.dvs.station;
 
-import ctjava.train.TrainListException;
-import ctjava.train.Train;
-import ctjava.train.TrainList;
+import com.dengsn.dvs.train.TrainListException;
+import com.dengsn.dvs.train.Train;
+import com.dengsn.dvs.train.TrainList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;

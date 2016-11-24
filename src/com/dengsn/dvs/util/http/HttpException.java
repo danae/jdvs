@@ -1,4 +1,4 @@
-package ctjava.util.http;
+package com.dengsn.dvs.util.http;
 
 public class HttpException extends Exception
 {
