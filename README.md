@@ -8,7 +8,7 @@
 
 The latest release of Jdvs is available under the [releases](https://github.com/dengsn/Jdvs/releases) tab in the [GitHub repository](https://github.com/dengsn/Jdvs). Jdvs depends on the following external libraries, make sure you download and include them in your project as well:
 
-- Java >= 1.8
+- Java >= `1.8`
 - [minimal-json](https://github.com/ralfstx/minimal-json) >= `0.9.4`
 
 ## Usage
