@@ -11,6 +11,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class StationList
 {
@@ -51,16 +53,39 @@ public final class StationList
         if (!country.equals("NL"))
           continue;
         
-        // Create a new name list if not in the map
-        if (!this.names.containsKey(code))
-          this.names.put(code,new LinkedList<>());
-
-        // Add names and synonyms
-        this.names.get(code).add(name);
-        
-        // Set the static instance
-        StationList.instance = this;
+        // Insert the new entry
+        this.insert(code,name);
       }
+      
+      // Add Centraal/Centrum synonyms
+      Pattern centraal = Pattern.compile("(\\w+) Centraal");
+      Pattern centrum = Pattern.compile("(\\w+) Centrum");
+      for (Map.Entry<String,List<String>> entry : this.names.entrySet())
+      {
+        // Check for centraal
+        for (String name : entry.getValue())
+        {
+          Matcher centraalMatcher = centraal.matcher(name);
+          if (centraalMatcher.matches())
+          {
+            entry.getValue().add(centraalMatcher.group(1) + " CS");
+            entry.getValue().add(centraalMatcher.group(1) + " C.");
+            entry.getValue().add(centraalMatcher.group(1) + " C");
+            break;
+          }
+          
+          Matcher centrumMatcher = centrum.matcher(name);
+          if (centrumMatcher.matches())
+          {
+            entry.getValue().add(centrumMatcher.group(1) + " C.");
+            entry.getValue().add(centrumMatcher.group(1) + " C");
+            break;
+          }
+        }
+      }
+      
+      // Set the static instance
+      StationList.instance = this;
     }
     catch (HttpException ex)
     {
@@ -70,6 +95,33 @@ public final class StationList
     {
       throw new StationListException("Could not load stations because the API response was invalid or incomplete ",ex);
     }
+  }
+  
+  // Insert a station with names
+  public StationList insert(String code, String name)
+  {
+    // Create a new name list if not in the map
+    if (!this.names.containsKey(code))
+      this.names.put(code,new LinkedList<>());
+
+    // Add names and synonyms
+    this.names.get(code).add(name);
+    
+    return this;
+  }
+  public StationList insert(String code, List<String> names)
+  {
+    for (String name : names)
+      this.insert(code,name);
+    
+    return this;
+  }
+  public StationList insert(Station station)
+  {
+    this.insert(station.getCode(),station.getName());
+    this.insert(station.getCode(),station.getSynonyms());
+    
+    return this;
   }
   
   // Returns a found station given a code or name query, or null if nothing found
